@@ -1,5 +1,3 @@
-source /usr/local/etc/vimrc_files/reasonably_stable_mappings.vim
-
 syn on
 set hlsearch
 " no line wrap

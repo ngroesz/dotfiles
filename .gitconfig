@@ -1,6 +1,6 @@
 [user]
 	name = Nick Groesz
-	email = nwg@rentrak.com
+	email = ngroesz@comscore.com
 [core]
 	editor = vim
 	excludesfile = /home/nwg/.gitignore_global
