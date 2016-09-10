@@ -16,3 +16,5 @@ export PATH
 
 EDITOR=/usr/bin/vim
 alias vi='/usr/bin/vim'
+
+export GREP_OPTIONS='--color=auto'
