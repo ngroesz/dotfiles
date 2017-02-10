@@ -1,9 +1,7 @@
 syn on
 set hlsearch
-" no line wrap
 set nowrap
 set ts=4 sw=4
-" do not expand tabs
 set expandtab!
 set sts=4
 set bs=2
@@ -13,15 +11,14 @@ set laststatus=2
 set ignorecase
 set smartcase
 set nu
-set statusline=[%n]\ %.200F\ %(\ %M%R%H)%)\ \@(%l\,%c%V)\ %P
 set wrap linebreak textwidth=0
+
+set statusline=[%n]\ %<%.200F\ %h%m%r%=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %-14.(%l,%c%V%)\ %P
 
 " relative paths
 set autochdir
 
 colorscheme elflord
-
-nmap ,w :ec system('git blame -L'.line('.').',+50 '.expand('%'))<CR>
 
 set list listchars=tab:→\ ,trail:·
 
@@ -45,3 +42,16 @@ au BufRead,BufNewFile *.fo set filetype=mason
 
 :map ,ca :!~/usealiases<CR>
 map ,b :BufExplorer<cr>
+
+setlocal foldmethod=indent
+set foldlevel=99
+
+function BlameLocal()
+    let line_max = line('.') + 50
+    if line_max > line('$')
+        let line_max = line('$')
+    endif
+    return 'git blame -L' . line('.') . ',' . line_max . ' ' . expand('%')
+endfunction
+
+nmap ,w :ec system(BlameLocal())<cr>
