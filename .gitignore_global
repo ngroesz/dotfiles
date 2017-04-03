@@ -1,0 +1,5 @@
+dev_environment.conf
+*.swp
+*.swo
+*.o
+*~
