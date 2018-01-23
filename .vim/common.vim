@@ -12,6 +12,7 @@ set ignorecase
 set smartcase
 set nu
 set wrap linebreak textwidth=0
+set hidden
 
 set statusline=[%n]\ %<%.200F\ %h%m%r%=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %-14.(%l,%c%V%)\ %P
 
