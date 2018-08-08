@@ -30,7 +30,6 @@ nmap ,p :set invpaste<CR>
 " select all in visual mode
 nmap ,s ggVG
 
-map ,r :write!<cr>:call GoToTheTest()<cr>:! rtk_test -h -c %<cr>
 :map! caps-lock <Esc>
 let loaded_matchparen = 0
 :hi MatchParen cterm=inverse
@@ -41,7 +40,6 @@ let loaded_matchparen = 0
 au BufRead,BufNewFile *.html set filetype=mason
 au BufRead,BufNewFile *.fo set filetype=mason
 
-:map ,ca :!~/usealiases<CR>
 map ,b :BufExplorer<cr>
 
 setlocal foldmethod=indent
@@ -56,3 +54,6 @@ function BlameLocal()
 endfunction
 
 nmap ,w :ec system(BlameLocal())<cr>
+
+"Remove all trailing whitespace by pressing F5
+nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
