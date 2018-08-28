@@ -121,6 +121,6 @@ alias vi='/usr/bin/vim'
 
 alias sl='ls' # fuck you, Masashi
 
-export GREP_OPTIONS='--color=auto'
+alias grep='grep --color=auto'
 
 set bell-style visible
