@@ -1,6 +1,11 @@
 \pset linestyle unicode
 \pset border 2
 \pset null '<NULL>'
-\pset paging on
+\pset pager on
+
 \set AUTOCOMMIT off
 \set ON_ERROR_ROLLBACK interactive
+
+\setenv EDITOR vim -u NONE
+\setenv PAGER less
+\setenv LESS -iMSx4 -FX
