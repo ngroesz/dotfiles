@@ -118,7 +118,7 @@ fi
 
 EDITOR=/usr/bin/vim
 
-alias vi='/usr/bin/vim'
+alias vi='/usr/bin/vim.basic'
 
 alias sl='ls' # fuck you, Masashi
 

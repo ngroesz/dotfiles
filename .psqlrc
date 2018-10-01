@@ -6,6 +6,6 @@
 \set AUTOCOMMIT off
 \set ON_ERROR_ROLLBACK interactive
 
-\setenv EDITOR vim -u NONE
+\setenv EDITOR /usr/bin/vim.basic
 \setenv PAGER less
-\setenv LESS -iMSx4 -FX
+\setenv LESS -iMSx4FX
