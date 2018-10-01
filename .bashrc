@@ -117,6 +117,9 @@ if ! shopt -oq posix; then
 fi
 
 EDITOR=/usr/bin/vim
+PAGER=less
+LESS="-iMSx4 -FX"
+
 alias vi='/usr/bin/vim'
 
 alias sl='ls' # fuck you, Masashi

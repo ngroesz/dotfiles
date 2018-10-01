@@ -1,5 +1,6 @@
 \pset linestyle unicode
 \pset border 2
 \pset null '<NULL>'
+\pset paging on
 \set AUTOCOMMIT off
 \set ON_ERROR_ROLLBACK interactive
