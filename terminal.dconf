@@ -1,5 +1,5 @@
 [/]
-cursor-shape='ibeam'
+cursor-shape='block'
 use-system-font=false
 audible-bell=false
 font='Monospace 12'
