@@ -1,4 +1,6 @@
-dev_environment.conf
+# Add this to git config with:
+# git config --global core.excludesfile ~/.gitignore_global
+
 *.swp
 *.swo
 *.o
