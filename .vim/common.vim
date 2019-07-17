@@ -14,6 +14,7 @@ set nu
 set wrap linebreak textwidth=0
 set hidden
 set visualbell
+let mapleader = ","
 
 set statusline=[%n]\ %<%.200F\ %h%m%r%=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %-14.(%l,%c%V%)\ %P
 
@@ -25,11 +26,11 @@ colorscheme elflord
 set list listchars=tab:→\ ,trail:·
 
 :nmap <C-N><C-N> :set invnumber<CR>
-nmap ,l :set invlist<CR>
-nmap ,p :set invpaste<CR>
+nmap <leader>l :set invlist<CR>
+nmap <leader>p :set invpaste<CR>
 
 " select all in visual mode
-nmap ,s ggVG
+nmap <leader>s ggVG
 
 :map! caps-lock <Esc>
 let loaded_matchparen = 0
@@ -41,7 +42,7 @@ let loaded_matchparen = 0
 au BufRead,BufNewFile *.html set filetype=mason
 au BufRead,BufNewFile *.fo set filetype=mason
 
-map ,b :BufExplorer<cr>
+map <leader>b :BufExplorer<cr>
 
 setlocal foldmethod=indent
 set foldlevel=99
@@ -54,7 +55,7 @@ function BlameLocal()
     return 'git blame -L' . line('.') . ',' . line_max . ' ' . expand('%')
 endfunction
 
-nmap ,w :ec system(BlameLocal())<cr>
+nmap <leader>w :ec system(BlameLocal())<cr>
 
 "Remove all trailing whitespace by pressing F5
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
