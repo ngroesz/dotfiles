@@ -42,7 +42,11 @@ let loaded_matchparen = 0
 au BufRead,BufNewFile *.html set filetype=mason
 au BufRead,BufNewFile *.fo set filetype=mason
 
-map <leader>b :BufExplorer<cr>
+nnoremap <silent> <F11> :BufExplorer<CR>
+nnoremap <silent> <s-F11> :ToggleBufExplorer<CR>
+nnoremap <silent> <m-F11> :BufExplorerHorizontalSplit<CR>
+nnoremap <silent> <c-F11> :BufExplorerVerticalSplit<CR>
+nmap <leader>b :BufExplorer<cr>
 
 setlocal foldmethod=indent
 set foldlevel=99
@@ -64,3 +68,5 @@ nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
+
+execute pathogen#infect()
