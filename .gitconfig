@@ -6,3 +6,5 @@
 	excludesfile = /home/nwg/.gitignore_global
 [color]
 	ui = auto
+[push]
+	default = current
