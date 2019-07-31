@@ -39,14 +39,8 @@ let loaded_matchparen = 0
 :hi MatchParen ctermbg=yellow
 :hi MatchParen cterm=reverse
 
-au BufRead,BufNewFile *.html set filetype=mason
-au BufRead,BufNewFile *.fo set filetype=mason
-
-nnoremap <silent> <F11> :BufExplorer<CR>
-nnoremap <silent> <s-F11> :ToggleBufExplorer<CR>
-nnoremap <silent> <m-F11> :BufExplorerHorizontalSplit<CR>
-nnoremap <silent> <c-F11> :BufExplorerVerticalSplit<CR>
-nmap <leader>b :BufExplorer<cr>
+nmap <leader>b :CtrlP<cr>
+let g:ctrlp_working_path_mode = 'ra'
 
 setlocal foldmethod=indent
 set foldlevel=99
@@ -69,4 +63,6 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-execute pathogen#infect()
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+" execute pathogen#infect()

@@ -1,25 +1,91 @@
-<p align="center">
-<img src="https://raw.githubusercontent.com/wincent/command-t/media/command-t-small.jpg" />
-<img src="https://raw.githubusercontent.com/wincent/command-t/media/command-t.gif" />
-</p>
+#**This project is unmaintained** 
+**You should use [this fork](https://github.com/ctrlpvim/ctrlp.vim) instead.**
 
-# Command-T
+# ctrlp.vim
+Full path fuzzy __file__, __buffer__, __mru__, __tag__, __...__ finder for Vim.
 
-Command-T is a Vim plug-in that provides an extremely fast "fuzzy" mechanism for:
+* Written in pure Vimscript for MacVim, gVim and Vim 7.0+.
+* Full support for Vim's regexp as search patterns.
+* Built-in Most Recently Used (MRU) files monitoring.
+* Built-in project's root finder.
+* Open multiple files at once.
+* Create new files and directories.
+* [Extensible][2].
 
-- Opening files and buffers
-- Jumping to tags and help
-- Running commands, or previous searches and commands
+![ctrlp][1]
 
-with a minimal number of keystrokes.
+## Basic Usage
+* Run `:CtrlP` or `:CtrlP [starting-directory]` to invoke CtrlP in find file mode.
+* Run `:CtrlPBuffer` or `:CtrlPMRU` to invoke CtrlP in find buffer or find MRU file mode.
+* Run `:CtrlPMixed` to search in Files, Buffers and MRU files at the same time.
 
-Files are selected by typing characters that appear in their paths, and are ranked by an algorithm which knows that characters that appear in certain locations (for example, immediately after a path separator) should be given more weight.
+Check `:help ctrlp-commands` and `:help ctrlp-extensions` for other commands.
 
-Files can be opened in the current window, or in splits or tabs. Many configuration options are provided.
+##### Once CtrlP is open:
+* Press `<F5>` to purge the cache for the current directory to get new files, remove deleted files and apply new ignore options.
+* Press `<c-f>` and `<c-b>` to cycle between modes.
+* Press `<c-d>` to switch to filename only search instead of full path.
+* Press `<c-r>` to switch to regexp mode.
+* Use `<c-j>`, `<c-k>` or the arrow keys to navigate the result list.
+* Use `<c-t>` or `<c-v>`, `<c-x>` to open the selected entry in a new tab or in a new split.
+* Use `<c-n>`, `<c-p>` to select the next/previous string in the prompt's history.
+* Use `<c-y>` to create a new file and its parent directories.
+* Use `<c-z>` to mark/unmark multiple files and `<c-o>` to open them.
 
-Speed is the primary design goal, along with providing high-quality, intuitive match ordering. The hand-crafted matching algorithm, implemented in low-level C and combined with parallelized search, input debouncing, integration with Watchman and many other optimizations, mean that Command-T is the fastest fuzzy file finder bar none.
+Run `:help ctrlp-mappings` or submit `?` in CtrlP for more mapping help.
 
----
+* Submit two or more dots `..` to go up the directory tree by one or multiple levels.
+* End the input string with a colon `:` followed by a command to execute it on the opening file(s):  
+Use `:25` to jump to line 25.  
+Use `:diffthis` when opening multiple files to run `:diffthis` on the first 4 files.
 
-For more information, see [the
-documentation](https://github.com/wincent/command-t/blob/master/doc/command-t.txt).
+## Basic Options
+* Change the default mapping and the default command to invoke CtrlP:
+
+    ```vim
+    let g:ctrlp_map = '<c-p>'
+    let g:ctrlp_cmd = 'CtrlP'
+    ```
+
+* When invoked, unless a starting directory is specified, CtrlP will set its local working directory according to this variable:
+
+    ```vim
+    let g:ctrlp_working_path_mode = 'ra'
+    ```
+
+    `'c'` - the directory of the current file.  
+    `'r'` - the nearest ancestor that contains one of these directories or files: `.git` `.hg` `.svn` `.bzr` `_darcs`  
+    `'a'` - like c, but only if the current working directory outside of CtrlP is not a direct ancestor of the directory of the current file.  
+    `0` or `''` (empty string) - disable this feature.
+
+    Define additional root markers with the `g:ctrlp_root_markers` option.
+
+* Exclude files and directories using Vim's `wildignore` and CtrlP's own `g:ctrlp_custom_ignore`:
+
+    ```vim
+    set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+    set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+
+    let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+    let g:ctrlp_custom_ignore = {
+      \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+      \ 'file': '\v\.(exe|so|dll)$',
+      \ 'link': 'some_bad_symbolic_links',
+      \ }
+    ```
+
+* Use a custom file listing command:
+
+    ```vim
+    let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+    let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
+    ```
+
+Check `:help ctrlp-options` for other options.
+
+## Installation
+Use your favorite method or check the homepage for a [quick installation guide][3].
+
+[1]: http://i.imgur.com/yIynr.png
+[2]: https://github.com/kien/ctrlp.vim/tree/extensions
+[3]: http://kien.github.com/ctrlp.vim#installation
