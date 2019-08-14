@@ -30,7 +30,7 @@ nmap <leader>l :set invlist<CR>
 nmap <leader>p :set invpaste<CR>
 
 " select all in visual mode
-nmap <leader>s ggVG
+nmap <leader>a <esc>ggVG<CR>
 
 :map! caps-lock <Esc>
 let loaded_matchparen = 0
