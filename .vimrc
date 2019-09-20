@@ -17,13 +17,14 @@ set visualbell
 let mapleader = ","
 
 set statusline=[%n]\ %<%.200F\ %h%m%r%=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %-14.(%l,%c%V%)\ %P
-	
+
 " relative paths
 set autochdir
 
 colorscheme elflord
 
-set list listchars=tab:→\ ,trail:·
+set list listchars=tab:→\ ,trail:·,precedes:←,extends:→
+nmap <leader>t :set expandtab!<CR> :set listchars=tab:    ,trail:·,precedes:←,extends:→<CR>
 
 :nmap <C-N><C-N> :set invnumber<CR>
 nmap <leader>l :set invlist<CR>
@@ -63,8 +64,6 @@ endif
 nnoremap <F6> :bp<CR>
 nnoremap <F7> :tabp<CR>
 nnoremap <F8> :tabn<CR>
-
-nmap <leader>t :set expandtab!<CR>
 
 " CtrlP FTW
 set runtimepath^=~/.vim/bundle/ctrlp.vim
