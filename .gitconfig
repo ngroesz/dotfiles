@@ -1,13 +1,15 @@
 [user]
 	name = Nick Groesz
-	email = x-ngroesz@cylance.com
+	email = nick.groesz@gmail.com
 [core]
 	editor = vim
-	excludesfile = /Users/x-ngroesz/.gitignore_global
+	excludesfile = /Users/ngroesz/.gitignore_global
 [color]
 	ui = auto
 [push]
 	default = current
+[pull]
+	rebase = false
 [alias]
 	br = branch -lvv
 	brr = branch -lrvv
