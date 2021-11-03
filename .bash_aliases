@@ -29,4 +29,4 @@ alias sl='ls' # fuck you, Masashi
 alias ss='open -a ScreenSaverEngine'
 
 # ag implementation Scala
-alias agis='ag -ignore-dir=test --scala'
+alias agis='ag --ignore-dir=test --scala'
