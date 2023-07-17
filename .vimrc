@@ -1,9 +1,10 @@
+scriptencoding utf-8
+set encoding=utf-8
+
 syn on
 set hlsearch
 set nowrap
-set ts=4 sw=4
 set expandtab
-set sts=4
 set bs=2
 set smartindent
 set incsearch
@@ -14,6 +15,8 @@ set nu
 set wrap linebreak textwidth=0
 set hidden
 set visualbell
+set re=0
+
 let mapleader = ","
 
 set statusline=[%n]\ %<%.200F\ %h%m%r%=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %-14.(%l,%c%V%)\ %P
@@ -23,10 +26,20 @@ set autochdir
 
 colorscheme elflord
 
-set list listchars=tab:→\ ,trail:·,precedes:←,extends:→
-nmap <leader>t :set expandtab!<CR> :set listchars=tab:    ,trail:·,precedes:←,extends:→<CR>
+function UseTabs()
+  execute "set noexpandtab"
+  execute "set nolist"
+endfunction
 
-:nmap <C-N><C-N> :set invnumber<CR>
+function UseSpaces()
+  execute "set expandtab"
+  execute "set list listchars=trail:·,precedes:←,extends:→"
+endfunction
+
+nmap <leader>t :call UseTabs()<CR>
+nmap <leader>s :call UseSpaces()<CR>
+
+nmap <C-N><C-N> :set invnumber<CR>
 nmap <leader>l :set invlist<CR>
 nmap <leader>p :set invpaste<CR>
 
@@ -51,6 +64,13 @@ function BlameLocal()
     return 'git blame -L' . line('.') . ',' . line_max . ' ' . expand('%')
 endfunction
 
+function! SetTabSize(size)
+    execute "set tabstop=".a:size
+    execute "set shiftwidth=".a:size
+    execute "set softtabstop=".a:size
+endfunction
+command! -nargs=1 Sts call SetTabSize(<f-args>)
+
 nmap <leader>w :ec system(BlameLocal())<cr>
 
 "Remove all trailing whitespace by pressing F5
@@ -72,3 +92,6 @@ nmap <leader>f :CtrlP<CR>
 nmap <leader>e :BufExplorer<CR>
 
 let g:ctrlp_working_path_mode = 'ra'
+
+call UseSpaces()
+call SetTabSize(2)
